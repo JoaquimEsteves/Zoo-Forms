@@ -27,3 +27,14 @@ export const Input = styled.input`
 export const Select = styled(Input)`
   font-family: "Noto Color Emoji", sans-serif;
 `;
+
+export const FixedButton = styled(Button)`
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+`;
+
+export const FixedRight = styled(FixedButton)`
+  left: unset;
+  right: 1rem;
+`

@@ -14,7 +14,8 @@ import Emoji from "./Emoji";
 
 const GoodbyeModal: React.FC<{
   setOpen: SetState<boolean>;
-}> = ({ setOpen }) => {
+  allFriends?: boolean;
+}> = ({ setOpen, allFriends }) => {
   const ref = React.useRef<HTMLElement>(null);
 
   useOnClickOutside(ref, () => setOpen(false));
@@ -31,21 +32,23 @@ const GoodbyeModal: React.FC<{
     ref.current?.focus();
   }, []);
 
-  const src = React.useMemo(
-    () => (Math.random() >= 0.5 ? FreedomImg : ReleaseImg),
-    []
-  );
+  const subject = allFriends ? "all of your friends" : selectedFriend;
 
   return (
     <FixedPortal>
       <Modal style={fadeIn} ref={ref} tabIndex={0}>
-        <Img src={src} />
+        <Img src={allFriends ? ReleaseImg : FreedomImg} />
         <div>
-          <h2>Return {selectedFriend} back to nature?</h2>
-          <Emoji $fSize={100}>{friends[selectedFriend ?? ""]?.emoji}</Emoji>
+          <h2>Return {subject} back to nature?</h2>
+          {!allFriends && (
+            <Emoji $fSize={100}>{friends[selectedFriend ?? ""]?.emoji}</Emoji>
+          )}
           <Button
             onClick={() => {
               setFriends((prev) => {
+                if (allFriends) {
+                  return {};
+                }
                 if (!selectedFriend) {
                   throw Error("I was called when there is no selected friend!");
                 }
@@ -96,6 +99,7 @@ const Modal = styled(animated.section)`
     place-items: center;
     gap: 1rem;
     height: 100%;
+    padding: 1rem;
   }
 `;
 
