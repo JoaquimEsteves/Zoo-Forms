@@ -1,7 +1,11 @@
 # Zoo Forms
 
+A small take-home assignemnt I did a while ago - I think it turned out quite cute.
+
+![Little Demo Showing off the Boop effect](./assets/zoo_friends.gif)
+
 This project was bootstrapped with Good ol' [Create React
-App](https://github.com/facebook/create-react-app).
+App](https://github.com/facebook/create-react-app) since that was a requirement.
 
 The name is a pun on 'two forms' - since the original request was for a simple
 app that had two forms.
